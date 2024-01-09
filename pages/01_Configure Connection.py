@@ -31,50 +31,20 @@ st.set_page_config(
 
 # 
 # side bar configuration
-#
+# -> no sidebar
+
 
 
 
 #
 # tab definition
-#
-
-
-tab1, tab2 = st.tabs([
-                    "What is the Jetvault App?",
-                    "How to use the app?"
-                    ])
+# -> no tabs
 
 
 
 
 
 #
-# What is the BeatTheBookie App?
+# content
 # 
 
-with tab1:
-    
-
-    """
-        
-    ## What is the Jetvault App?
-
-    Here we need some description for the App.
-    
-    """
-
-
-#
-# How to use the app?
-# 
-
-with tab2:
-    
-    """
-        
-    ## How to use the Jetvault App?
-
-    Introduction to the Jetvault App
-
-    """
