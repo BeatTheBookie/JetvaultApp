@@ -26,6 +26,7 @@ st.set_page_config(
 #
 
 
+
 #
 # function definitions
 #
@@ -44,9 +45,9 @@ def test_connection():
             user=st.session_state.snowflake_user,
             password=st.session_state.snowflake_password,
             account=st.session_state.snowflake_account,
-            warehouse='your_warehouse',
-            database='your_database',
-            schema='your_schema'
+            #warehouse='your_warehouse',
+            #database='your_database',
+            schema='META'
         )
         cursor = conn.cursor()
         st.success("Connection successful!")
