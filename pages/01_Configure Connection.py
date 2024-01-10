@@ -31,30 +31,8 @@ st.set_page_config(
 # function definitions
 #
 
-def save_connection_info():
-    st.session_state.snowflake_account = st.text_input("Snowflake Account", key="snowflake_account_key")
-    st.session_state.snowflake_user = st.text_input("User", key="snowflake_user_key")
-    st.session_state.snowflake_password = st.text_input("Password", type="password", key="snowflake_password_key")
-    st.success("Connection info saved!")
 
-
-
-def test_connection():
-    try:
-        conn = snowflake.connector.connect(
-            user=st.session_state.snowflake_user,
-            password=st.session_state.snowflake_password,
-            account=st.session_state.snowflake_account,
-            #warehouse='your_warehouse',
-            #database='your_database',
-            schema='META'
-        )
-        cursor = conn.cursor()
-        st.success("Connection successful!")
-        cursor.close()
-        conn.close()
-    except Exception as e:
-        st.error(f"Error connecting to Snowflake: {str(e)}")
+    
 
 
 
@@ -112,10 +90,27 @@ snowflake_password = st.text_input("Password", st.session_state.snowflake_passwo
 
 # Button to save connection info
 if st.button("Save Connection Info"):
-    save_connection_info()
+    st.session_state.snowflake_account = snowflake_account
+    st.session_state.snowflake_user = snowflake_user
+    st.session_state.snowflake_password = snowflake_password    
+    st.success("Connection info saved!")
 
 
 
 # Button to test connection
 if st.button("Test Connection"):
-    test_connection()
+    try:
+        conn = snowflake.connector.connect(
+            user=st.session_state.snowflake_user,
+            password=st.session_state.snowflake_password,
+            account=st.session_state.snowflake_account,
+            #warehouse='your_warehouse',
+            #database='your_database',
+            schema='META'
+        )
+        cursor = conn.cursor()
+        st.success("Connection successful!")
+        cursor.close()
+        conn.close()
+    except Exception as e:
+        st.error(f"Error connecting to Snowflake: {str(e)}")
