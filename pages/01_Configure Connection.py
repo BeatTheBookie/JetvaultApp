@@ -82,9 +82,10 @@ if "snowflake_password" not in st.session_state:
 
 # Text inputs for Snowflake account, user, and password
 st.subheader("Connection Details")
-snowflake_account = st.text_input("Snowflake Account", st.session_state.snowflake_account, key="snowflake_account_key")
-snowflake_user = st.text_input("User", st.session_state.snowflake_user, key="snowflake_user_key")
-snowflake_password = st.text_input("Password", st.session_state.snowflake_password, type="password", key="snowflake_password_key")
+snowflake_account = st.text_input("Snowflake Account", st.session_state.snowflake_account)
+snowflake_user = st.text_input("User", st.session_state.snowflake_user)
+snowflake_password = st.text_input("Password", st.session_state.snowflake_password, type="password")
+snowflake_database = st.text_input("Database", st.session_state.snowflake_database)
 
 
 
@@ -105,7 +106,7 @@ if st.button("Test Connection"):
             password=st.session_state.snowflake_password,
             account=st.session_state.snowflake_account,
             #warehouse='your_warehouse',
-            #database='your_database',
+            database=st.session_state.snowflake_database,
             schema='META'
         )
         cursor = conn.cursor()
