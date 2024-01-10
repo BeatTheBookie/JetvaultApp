@@ -77,6 +77,8 @@ if "snowflake_user" not in st.session_state:
     st.session_state.snowflake_user = ""
 if "snowflake_password" not in st.session_state:
     st.session_state.snowflake_password = ""
+if "snowflake_database" not in st.session_state:
+    st.session_state.snowflake_database = ""
 
 
 
