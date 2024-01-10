@@ -112,9 +112,6 @@ snowflake_password = st.text_input("Password", st.session_state.snowflake_passwo
 
 # Button to save connection info
 if st.button("Save Connection Info"):
-    st.session_state.snowflake_account = snowflake_account
-    st.session_state.snowflake_user = snowflake_user
-    st.session_state.snowflake_password = snowflake_password
     save_connection_info()
 
 
