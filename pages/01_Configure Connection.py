@@ -32,9 +32,9 @@ st.set_page_config(
 #
 
 def save_connection_info():
-    st.session_state.snowflake_account = st.text_input("Snowflake Account")
-    st.session_state.snowflake_user = st.text_input("User")
-    st.session_state.snowflake_password = st.text_input("Password", type="password")
+    st.session_state.snowflake_account = st.text_input("Snowflake Account", key="snowflake_account_key")
+    st.session_state.snowflake_user = st.text_input("User", key="snowflake_user_key")
+    st.session_state.snowflake_password = st.text_input("Password", type="password", key="snowflake_password_key")
     st.success("Connection info saved!")
 
 
@@ -104,9 +104,9 @@ if "snowflake_password" not in st.session_state:
 
 # Text inputs for Snowflake account, user, and password
 st.subheader("Connection Details")
-snowflake_account = st.text_input("Snowflake Account", st.session_state.snowflake_account)
-snowflake_user = st.text_input("User", st.session_state.snowflake_user)
-snowflake_password = st.text_input("Password", st.session_state.snowflake_password, type="password")
+snowflake_account = st.text_input("Snowflake Account", st.session_state.snowflake_account, key="snowflake_account_key")
+snowflake_user = st.text_input("User", st.session_state.snowflake_user, key="snowflake_user_key")
+snowflake_password = st.text_input("Password", st.session_state.snowflake_password, type="password", key="snowflake_password_key")
 
 
 
