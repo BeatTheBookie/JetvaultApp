@@ -79,6 +79,8 @@ if "snowflake_password" not in st.session_state:
     st.session_state.snowflake_password = ""
 if "snowflake_database" not in st.session_state:
     st.session_state.snowflake_database = ""
+if "snowflake_schema" not in st.session_state:
+    st.session_state.snowflake_schema = ""
 
 
 
@@ -88,6 +90,7 @@ snowflake_account = st.text_input("Snowflake Account", st.session_state.snowflak
 snowflake_user = st.text_input("User", st.session_state.snowflake_user)
 snowflake_password = st.text_input("Password", st.session_state.snowflake_password, type="password")
 snowflake_database = st.text_input("Database", st.session_state.snowflake_database)
+snowflake_schema = st.text_input("Meta data schema", st.session_state.snowflake_schema)
 
 
 
@@ -95,7 +98,8 @@ snowflake_database = st.text_input("Database", st.session_state.snowflake_databa
 if st.button("Save Connection Info"):
     st.session_state.snowflake_account = snowflake_account
     st.session_state.snowflake_user = snowflake_user
-    st.session_state.snowflake_password = snowflake_password    
+    st.session_state.snowflake_password = snowflake_password
+    st.session_state.snowflake_schema = snowflake_schema 
     st.success("Connection info saved!")
 
 
@@ -109,7 +113,7 @@ if st.button("Test Connection"):
             account=st.session_state.snowflake_account,
             #warehouse='your_warehouse',
             database=st.session_state.snowflake_database,
-            schema='META'
+            schema=st.session_state.snowflake_schema
         )
         cursor = conn.cursor()
         st.success("Connection successful!")
