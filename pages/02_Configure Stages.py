@@ -7,6 +7,7 @@ import streamlit.components.v1 as components
 #helper functions
 from helper.JetvaultApp_helper import get_stage_config
 from helper.JetvaultApp_helper import get_all_db_schema
+from helper.JetvaultApp_helper import push_stage_config
 
 
 
@@ -80,8 +81,7 @@ if "snowflake_account" not in st.session_state or \
 
 
 
-# Streamlit UI
-st.title("Snowflake Data Editor")
+
 
 #get configuration
 df_stage_config = get_stage_config()
@@ -114,3 +114,13 @@ df_stage_config = st.data_editor(df_stage_config,
                                                 required=True,
                                           )}
                                     )
+
+
+# Button to test connection
+if st.button("Save configuration"):
+      try:
+            push_stage_config(df_stage_config)
+            st.success("Configuration saved to database.")
+      except Exception as e:
+            st.error(f"Error saving configuration: {str(e)}")
+      
