@@ -78,7 +78,12 @@ if "snowflake_account" not in st.session_state or \
     st.stop()
 
 
- # Streamlit UI
+st.write(st.session_state.snowflake_user)
+st.write(st.session_state.snowflake_password)
+st.write(st.session_state.snowflake_database)
+st.write(st.session_state.snowflake_schema)
+
+# Streamlit UI
 st.title("Snowflake Data Editor")
 
 df_stage_config = get_stage_config()
