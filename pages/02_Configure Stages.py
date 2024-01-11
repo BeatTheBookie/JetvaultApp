@@ -68,7 +68,7 @@ with st.expander("Information"):
             
 
 
-
+# only continue if sesssion state contains the connection information
 if "snowflake_account" not in st.session_state or \
    "snowflake_user" not in st.session_state or \
    "snowflake_password" not in st.session_state or \
@@ -78,10 +78,6 @@ if "snowflake_account" not in st.session_state or \
     st.stop()
 
 
-st.write(st.session_state.snowflake_user)
-st.write(st.session_state.snowflake_password)
-st.write(st.session_state.snowflake_database)
-st.write(st.session_state.snowflake_schema)
 
 # Streamlit UI
 st.title("Snowflake Data Editor")

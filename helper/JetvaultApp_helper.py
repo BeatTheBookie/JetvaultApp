@@ -26,7 +26,7 @@ def get_stage_config():
                 user=st.session_state.snowflake_user,
                 password=st.session_state.snowflake_password,
                 account=st.session_state.snowflake_account,
-                #warehouse='your_warehouse',
+                warehouse = st.session_state.snowflake_warehouse,
                 database=st.session_state.snowflake_database,
                 schema=st.session_state.snowflake_schema
                 )            
