@@ -75,7 +75,7 @@ if "snowflake_account" not in st.session_state or \
    "snowflake_database" not in st.session_state or \
    "snowflake_schema" not in st.session_state:
     st.error("No connection information. Please save Snowflake connection information first.")
-    st.stop
+    st.stop()
 
 
  # Streamlit UI
