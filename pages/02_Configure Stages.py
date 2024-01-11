@@ -88,7 +88,7 @@ df_stage_config = get_stage_config()
 
 #get available db schemas
 df_db_schema = get_all_db_schema()
-lst_db_schema = df_db_schema['schema_name'].to_list()
+lst_db_schema = df_db_schema['SCHEMA_NAME'].to_list()
 
 
    
