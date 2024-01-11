@@ -93,7 +93,7 @@ df_stage_config = st.data_editor(df_stage_config,
                                                 help="Name of the stage schema",
                                                 validate="^st\.[a-z_]+$",
                                                 required=True
-                                          )
+                                          ),
                                           "LOAD_TYPE": st.column_config.SelectboxColumn(
                                                 "Load Typee",
                                                 help="Loading type for the stage schema",
