@@ -85,4 +85,24 @@ st.title("Snowflake Data Editor")
 df_stage_config = get_stage_config()
    
 # Display the result DataFrame using st.dataframe
-st.data_editor(df_stage_config)
+df_stage_config = st.data_editor(df_stage_config,
+                                    num_rows = "dynamic",
+                                    column_config={
+                                         "STAGE_SCHEMA": st.column_config.TextColumn(
+                                                "Stage Schema",
+                                                help="Name of the stage schema",
+                                                validate="^st\.[a-z_]+$",
+                                                required=True
+                                          )
+                                          "LOAD_TYPE": st.column_config.SelectboxColumn(
+                                                "Load Typee",
+                                                help="Loading type for the stage schema",
+                                                width="medium",
+                                                options=[
+                                                "DELTA",
+                                                "FULL",
+                                                "HISTORY",
+                                                ],
+                                                required=True,
+                                          )}
+                                    )
