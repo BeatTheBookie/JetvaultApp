@@ -85,4 +85,4 @@ st.title("Snowflake Data Editor")
 df_stage_config = get_stage_config()
    
 # Display the result DataFrame using st.dataframe
-st.dataframe(df_stage_config)
+st.data_editor(df_stage_config)
