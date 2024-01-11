@@ -6,7 +6,8 @@ import streamlit.components.v1 as components
 
 #helper functions
 from helper.JetvaultApp_helper import get_stage_config
-#from helper.BTB_app_helper import make_grid
+from helper.JetvaultApp_helper import get_all_db_schema
+
 
 
 
@@ -82,20 +83,27 @@ if "snowflake_account" not in st.session_state or \
 # Streamlit UI
 st.title("Snowflake Data Editor")
 
+#get configuration
 df_stage_config = get_stage_config()
+
+#get available db schemas
+df_db_schema = get_all_db_schema()
+lst_db_schema = df_db_schema['schema_name'].to_list()
+
+
    
 # Display the result DataFrame using st.dataframe
 df_stage_config = st.data_editor(df_stage_config,
                                     num_rows = "dynamic",
                                     column_config={
-                                         "STAGE_SCHEMA": st.column_config.TextColumn(
+                                         "STAGE_SCHEMA": st.column_config.SelectboxColumn(
                                                 "Stage Schema",
                                                 help="Name of the stage schema",
-                                                validate="^st\.[a-z_]+$",
+                                                options=lst_db_schema,
                                                 required=True
                                           ),
                                           "LOAD_TYPE": st.column_config.SelectboxColumn(
-                                                "Load Typee",
+                                                "Load Type",
                                                 help="Loading type for the stage schema",
                                                 width="medium",
                                                 options=[
