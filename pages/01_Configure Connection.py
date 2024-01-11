@@ -100,6 +100,7 @@ if st.button("Save Connection Info"):
     st.session_state.snowflake_user = snowflake_user
     st.session_state.snowflake_password = snowflake_password
     st.session_state.snowflake_schema = snowflake_schema 
+    st.session_state.snowflake_database = snowflake_database
     st.success("Connection info saved!")
 
 
