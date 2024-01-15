@@ -77,9 +77,41 @@ if "snowflake_account" not in st.session_state or \
 
 
 
-
 #get configuration
 df_hub_load_config = get_hub_load_config()
+
+
+
+with st.expander("Create new Hub load"):
+     
+     stage_schema = st.selectbox(
+                        label = 'Stage Schema',
+                        options = ('test', 'test')
+                        )
+     
+      stage_table = st.selectbox(
+                        label = 'Stage Table',
+                        options = ('test', 'test')
+                        )
+
+      hub_schema = st.selectbox(
+                        label = 'Hub Schema',
+                        options = ('test', 'test')
+                        )
+     
+
+      hub_name = st.text_input(
+                        label = 'Hub Name'
+                        )
+
+      hub_alias = st.text_input(
+                        label = 'Hub Alias'
+                        )
+     
+      bk_columns = st.selectbox(
+                        label = 'Hub Schema',
+                        options = ('test', 'test')
+                        )
 
 
 
