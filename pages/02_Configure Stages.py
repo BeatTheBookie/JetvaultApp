@@ -120,7 +120,7 @@ df_stage_config = st.data_editor(df_stage_config,
 if st.button("Save configuration"):
       try:
             push_stage_config(df_stage_config)
-            st.success("Configuration saved to database.")
+            st.success("Configuration successfully saved to database.")
       except Exception as e:
             st.error(f"Error saving configuration: {str(e)}")
       

@@ -16,7 +16,7 @@ def make_grid(cols,rows):
 
 
 #
-# Functions to get data from database
+# Get and save stage configuration
 #
 
 
@@ -34,7 +34,7 @@ def get_stage_config():
             )            
 
         # Your SQL query
-        query = "SELECT stage_schema, LOAD_TYPE FROM META.LOAD_CONFIG"
+        query = "SELECT stage_schema, LOAD_TYPE FROM META.LOAD_CONFIG order by stage_schema"
 
         # Execute the query and fetch results into a DataFrame
         df = pd.read_sql_query(query, conn)
@@ -75,6 +75,52 @@ def push_stage_config(df_stage_config):
     except Exception as e:
         st.error(f"Error executing SQL query: {str(e)}")
         return None
+
+
+
+#
+# Get and save Hub load configuration
+#
+
+
+# get configured stage schema
+def get_hub_load_config():
+    try:
+        conn = snowflake.connector.connect(
+            user=st.session_state.snowflake_user,
+            password=st.session_state.snowflake_password,
+            account=st.session_state.snowflake_account,
+            warehouse = st.session_state.snowflake_warehouse,
+            database=st.session_state.snowflake_database,
+            schema=st.session_state.snowflake_schema
+            )            
+
+        # Your SQL query
+        query = """SELECT 
+                stage_schema,
+                stage_table,
+                HUB_SCHEMA,
+                hub_name,
+                HUB_ALIAS,
+                BK_SOURCE_COLUMN_LIST
+            FROM 
+                meta.HUB_LOAD
+            ORDER BY 1,2,4,5"""
+
+        # Execute the query and fetch results into a DataFrame
+        df = pd.read_sql_query(query, conn)
+
+        # Close the connection
+        conn.close()
+
+        return df
+    except Exception as e:
+        st.error(f"Error executing SQL query: {str(e)}")
+        return None
+
+
+
+
 
 
 
