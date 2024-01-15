@@ -84,7 +84,7 @@ df_hub_load_config = get_hub_load_config()
 
 with st.expander("Create new Hub load"):
      
-     stage_schema = st.selectbox(
+      stage_schema = st.selectbox(
                         label = 'Stage Schema',
                         options = ('test', 'test')
                         )
