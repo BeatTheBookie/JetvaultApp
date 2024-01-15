@@ -210,10 +210,6 @@ def get_link_load_config():
 
 
 
-
-
-
-
 # get all available schemas in 
 def get_all_db_schema():
     try:
@@ -239,3 +235,4 @@ def get_all_db_schema():
     except Exception as e:
         st.error(f"Error executing SQL query: {str(e)}")
         return None
+    
