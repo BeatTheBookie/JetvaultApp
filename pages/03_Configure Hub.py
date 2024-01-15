@@ -120,7 +120,7 @@ with st.expander("Create new Hub load"):
       
       df_bk_columns = get_columns_by_table(stage_schema, stage_table)
      
-      bk_columns = st.selectbox(
+      bk_columns = st.multiselect(
                         label = 'Business Key',
                         options = df_bk_columns
                         )
