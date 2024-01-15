@@ -236,3 +236,36 @@ def get_all_db_schema():
         st.error(f"Error executing SQL query: {str(e)}")
         return None
     
+
+# get table for a given schema
+def get_tables_by_schema(schema_name):
+
+    try:
+        conn = snowflake.connector.connect(
+            user=st.session_state.snowflake_user,
+            password=st.session_state.snowflake_password,
+            account=st.session_state.snowflake_account,
+            warehouse = st.session_state.snowflake_warehouse,
+            database=st.session_state.snowflake_database,
+            schema=st.session_state.snowflake_schema
+            )            
+
+        # Your SQL query
+        query = """SELECT 
+                    table_name
+                FROM 
+                    INFORMATION_SCHEMA."TABLES"
+                WHERE 
+                    table_schema = '" + schema_name + "'
+                ORDER BY 1"""
+
+        # Execute the query and fetch results into a DataFrame
+        df = pd.read_sql_query(query, conn)
+
+        # Close the connection
+        conn.close()
+
+        return df
+    except Exception as e:
+        st.error(f"Error executing SQL query: {str(e)}")
+        return None

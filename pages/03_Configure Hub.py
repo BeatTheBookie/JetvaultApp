@@ -7,6 +7,7 @@ import streamlit.components.v1 as components
 #helper functions
 from helper.JetvaultApp_helper import get_hub_load_config
 from helper.JetvaultApp_helper import get_all_db_schema
+from helper.JetvaultApp_helper import get_tables_by_schema
 
 
 st.set_page_config(
@@ -90,10 +91,12 @@ with st.expander("Create new Hub load"):
                         label = 'Stage Schema',
                         options = lst_db_schema
                         )
+      
+      lst_stage_tables = get_tables_by_schema(stage_schema)
      
       stage_table = st.selectbox(
                         label = 'Stage Table',
-                        options = ('test', 'test')
+                        options = lst_stage_tables
                         )
 
       hub_schema = st.selectbox(
@@ -114,6 +117,10 @@ with st.expander("Create new Hub load"):
                         options = ('test', 'test')
                         )
 
+
+      # Button to save connection info
+      if st.button("Save Hub Load"):
+            st.success("Hub Load added successfully!")
 
 
 # Display the result DataFrame using st.dataframe
