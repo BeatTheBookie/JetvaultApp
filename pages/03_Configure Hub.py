@@ -136,7 +136,7 @@ with st.expander("Create new Hub load"):
                         )
       
 
-      st.writer(bk_columns)
+      st.write(bk_columns)
 
 
       # Button to save connection info
