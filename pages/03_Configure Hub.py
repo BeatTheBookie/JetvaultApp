@@ -168,7 +168,7 @@ with side_grid[0][0]:
 
                   st.success("Hub Load added successfully!")
 
-with side_grid[1][0]:
+with side_grid[0][1]:
 
       with st.expander("Delete Hub load"):
 
@@ -181,7 +181,7 @@ with side_grid[1][0]:
             """, unsafe_allow_html=True)
 
 
-with side_grid[2][0]:
+with side_grid[0][2]:
 
       with st.expander("Edit Hub load"):
 
