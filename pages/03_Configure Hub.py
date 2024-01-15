@@ -87,7 +87,7 @@ df_hub_load_config = get_hub_load_config()
 
 
 #build container and colum grid
-side_grid = make_grid(3,1)
+side_grid = make_grid(1,3)
 
 
 with side_grid[0][0]:
