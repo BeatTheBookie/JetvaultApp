@@ -161,4 +161,7 @@ with st.expander("Create new Hub load"):
 
 
 # Display the result DataFrame using st.dataframe
-st.dataframe(df_hub_load_config)
+st.dataframe(
+            data = df_hub_load_config,
+            use_container_width = True
+            )
