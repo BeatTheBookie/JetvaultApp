@@ -94,7 +94,7 @@ with st.expander("Create new Hub load"):
       
       lst_stage_tables = get_tables_by_schema(stage_schema)
 
-      st.write('lst_stage_tables')
+      st.write(lst_stage_tables)
      
       stage_table = st.selectbox(
                         label = 'Stage Table',
