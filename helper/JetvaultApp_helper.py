@@ -120,6 +120,96 @@ def get_hub_load_config():
 
 
 
+#
+# Get and save Sat load configuration
+#
+
+
+def get_sat_load_config():
+    try:
+        conn = snowflake.connector.connect(
+            user=st.session_state.snowflake_user,
+            password=st.session_state.snowflake_password,
+            account=st.session_state.snowflake_account,
+            warehouse = st.session_state.snowflake_warehouse,
+            database=st.session_state.snowflake_database,
+            schema=st.session_state.snowflake_schema
+            )            
+
+        # Your SQL query
+        query = """SELECT 
+                    stage_schema,
+                    stage_table,
+                    sat_schema,
+                    SAT_NAME,
+                    REFERENCED_OBJECT_NAME,
+                    DELTA_HASH_SRC_COLUMN_LIST ATTRIBUTES
+                FROM 
+                    META.SATELLITE_LOAD
+                ORDER BY 1,2,4"""
+
+        # Execute the query and fetch results into a DataFrame
+        df = pd.read_sql_query(query, conn)
+
+        # Close the connection
+        conn.close()
+
+        return df
+    except Exception as e:
+        st.error(f"Error executing SQL query: {str(e)}")
+        return None
+
+
+
+#
+# Get and save link load configuration
+#
+
+def get_link_load_config():
+    try:
+        conn = snowflake.connector.connect(
+            user=st.session_state.snowflake_user,
+            password=st.session_state.snowflake_password,
+            account=st.session_state.snowflake_account,
+            warehouse = st.session_state.snowflake_warehouse,
+            database=st.session_state.snowflake_database,
+            schema=st.session_state.snowflake_schema
+            )            
+
+        # Your SQL query
+        query = """SELECT 
+                    STAGE_SCHEMA,
+                    stage_table,
+                    link_schema,
+                    LINK_NAME,
+                    L_COLUMN_NAME link_hash_column,
+                    REFERENCED_HUB_NAME_1,
+                    REFERENCED_HUB_NAME_2
+                FROM 
+                    META.LINK_LOAD
+                ORDER BY 1,2,4"""
+
+        # Execute the query and fetch results into a DataFrame
+        df = pd.read_sql_query(query, conn)
+
+        # Close the connection
+        conn.close()
+
+        return df
+    except Exception as e:
+        st.error(f"Error executing SQL query: {str(e)}")
+        return None
+
+
+
+
+#
+# Get and save transactional link load configuration
+#
+    
+
+
+
 
 
 

@@ -5,9 +5,7 @@ import streamlit.components.v1 as components
 
 
 #helper functions
-#from helper.BTB_app_helper import get_authenticater_config
-#from helper.BTB_app_helper import make_grid
-
+from helper.JetvaultApp_helper import get_sat_load_config
 
 
 st.set_page_config(
@@ -48,3 +46,37 @@ st.set_page_config(
 # content
 # 
 
+st.title("Jetvault Satellite Load Configuration")
+
+
+
+with st.expander("Information"):
+            
+
+      st.markdown("""
+            <p>
+            
+            bla bla
+            
+            </p>
+            """, unsafe_allow_html=True)
+      
+
+# only continue if sesssion state contains the connection information
+if "snowflake_account" not in st.session_state or \
+   "snowflake_user" not in st.session_state or \
+   "snowflake_password" not in st.session_state or \
+   "snowflake_database" not in st.session_state or \
+   "snowflake_schema" not in st.session_state:
+    st.error("No connection information. Please save Snowflake connection information first.")
+    st.stop()
+
+
+
+#get configuration
+df_sat_load_config = get_sat_load_config()
+
+
+
+# Display the result DataFrame using st.dataframe
+st.dataframe(df_sat_load_config)
