@@ -153,7 +153,7 @@ with st.expander("Create new Hub load"):
                               }]
             
             # add new hub load to data frame
-            df_hub_load_config = pd.concat([df_hub_load_config, pd.DataFrame(new_hub_records)])
+            df_hub_load_config = pd.concat([df_hub_load_config, pd.DataFrame(new_hub_records)], ignore_index=True)
             
             push_hub_load_config(df_hub_load_config)
 
