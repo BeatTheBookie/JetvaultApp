@@ -143,12 +143,15 @@ with st.expander("Create new Hub load"):
       if st.button("Save Hub Load"):
 
             # add entry to data frame
-            new_hub_records = [{'STAGE_SCHEMA' : stage_schema},
+            new_hub_records = [
+                              {'STAGE_SCHEMA' : stage_schema},
                               {'STAGE_TABLE' : stage_table},
                               {'HUB_SCHEMA' : hub_schema},
                               {'HUB_NAME' : hub_name},
                               {'HUB_ALIAS' : hub_alias},
-                              {'BK_SOURCE_COLUMN_LIST' : bk_columns}]
+                              #{'BK_SOURCE_COLUMN_LIST' : bk_columns}]
+                              {'BK_SOURCE_COLUMN_LIST' : [value for dictionary in bk_columns for value in dictionary.values()]}
+                              ]
             
             # add new hub load to data frame
             df_hub_load_config = pd.concat([df_hub_load_config, pd.DataFrame(new_hub_records)], ignore_index=True)
