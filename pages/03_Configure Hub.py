@@ -150,7 +150,7 @@ with st.expander("Create new Hub load"):
                               {'HUB_NAME' : hub_name},
                               {'HUB_ALIAS' : hub_alias},
                               #{'BK_SOURCE_COLUMN_LIST' : bk_columns}]
-                              {'BK_SOURCE_COLUMN_LIST' : [value for dictionary in bk_columns for value in dictionary.values()]}
+                              {'BK_SOURCE_COLUMN_LIST' : ','.join(bk_columns)}
                               ]
             
             # add new hub load to data frame
