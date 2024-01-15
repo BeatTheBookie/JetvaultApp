@@ -125,6 +125,9 @@ with st.expander("Create new Hub load"):
       hub_alias = st.text_input(
                         label = 'Hub Alias'
                         )
+
+      if hub_alias == "":
+            hub_alias = None
       
       # get all columns for selected stage table
       df_bk_columns = get_columns_by_table(stage_schema, stage_table)
