@@ -99,7 +99,6 @@ with st.expander("Create new Hub load"):
                         options = ('test', 'test')
                         )
      
-
       hub_name = st.text_input(
                         label = 'Hub Name'
                         )
@@ -109,7 +108,7 @@ with st.expander("Create new Hub load"):
                         )
      
       bk_columns = st.selectbox(
-                        label = 'Hub Schema',
+                        label = 'Business Key',
                         options = ('test', 'test')
                         )
 
