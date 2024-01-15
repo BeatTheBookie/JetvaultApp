@@ -256,11 +256,10 @@ def get_tables_by_schema(schema_name):
                 FROM 
                     INFORMATION_SCHEMA."TABLES"
                 WHERE 
-                    table_schema = '" + schema_name + "'
+                    table_schema = '""" + schema_name + """'
                 ORDER BY 1"""
 
-        st.write(query)
-
+        
         # Execute the query and fetch results into a DataFrame
         df = pd.read_sql_query(query, conn)
 
