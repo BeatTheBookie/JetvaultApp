@@ -87,7 +87,7 @@ df_hub_load_config = get_hub_load_config()
 
 
 #build container and colum grid
-side_grid = make_grid(1,3)
+side_grid = make_grid(1,2)
 
 
 with side_grid[0][0]:
@@ -180,18 +180,6 @@ with side_grid[0][1]:
             </p>
             """, unsafe_allow_html=True)
 
-
-with side_grid[0][2]:
-
-      with st.expander("Edit Hub load"):
-
-            st.markdown("""
-            <p>
-            
-            bla bla
-            
-            </p>
-            """, unsafe_allow_html=True)
 
 
 # Display the result DataFrame using st.dataframe
