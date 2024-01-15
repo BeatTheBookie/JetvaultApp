@@ -255,7 +255,9 @@ def get_tables_by_schema(schema_name):
                     table_name
                 FROM 
                     INFORMATION_SCHEMA."TABLES"
-                WHERE 
+                WHERE
+                    --exlude stage-views
+                    table_name not like 'VW_%' and
                     table_schema = '""" + schema_name + """'
                 ORDER BY 1"""
 
