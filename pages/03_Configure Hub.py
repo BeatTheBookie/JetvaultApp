@@ -134,6 +134,9 @@ with st.expander("Create new Hub load"):
                         label = 'Business Key',
                         options = df_bk_columns
                         )
+      
+
+      st.writer(bk_columns)
 
 
       # Button to save connection info
