@@ -119,6 +119,34 @@ def get_hub_load_config():
         return None
 
 
+# write stage config back to the database
+def push_hub_load_config(df_hub_config):
+    try:
+        conn = snowflake.connector.connect(
+            user=st.session_state.snowflake_user,
+            password=st.session_state.snowflake_password,
+            account=st.session_state.snowflake_account,
+            warehouse = st.session_state.snowflake_warehouse,
+            database=st.session_state.snowflake_database,
+            schema=st.session_state.snowflake_schema
+            )            
+
+        # truncate table
+        conn.cursor().execute("truncate table HUB_LOAD")
+
+        # import data frame in empty table
+        success, nchunks, nrows, _ = write_pandas(conn=conn, 
+                                                df =  df_hub_config,
+                                                table_name = 'HUB_LOAD'
+                                                )
+
+        # Close the connection
+        conn.close()
+        
+    except Exception as e:
+        st.error(f"Error executing SQL query: {str(e)}")
+        return None
+
 
 #
 # Get and save Sat load configuration
