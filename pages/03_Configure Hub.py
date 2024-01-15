@@ -8,6 +8,7 @@ import streamlit.components.v1 as components
 from helper.JetvaultApp_helper import get_hub_load_config
 from helper.JetvaultApp_helper import get_all_db_schema
 from helper.JetvaultApp_helper import get_tables_by_schema
+from helper.JetvaultApp_helper import get_columns_by_table
 
 
 st.set_page_config(
@@ -85,25 +86,28 @@ df_hub_load_config = get_hub_load_config()
 
 with st.expander("Create new Hub load"):
 
-      lst_db_schema = get_all_db_schema()
+      #
+      # create the whole object for a hub configuration
+      #
+
+      df_db_schema = get_all_db_schema()
      
       stage_schema = st.selectbox(
                         label = 'Stage Schema',
-                        options = lst_db_schema
+                        options = df_db_schema
                         )
       
-      lst_stage_tables = get_tables_by_schema(stage_schema)
+      df_stage_tables = get_tables_by_schema(stage_schema)
 
-      st.write(lst_stage_tables)
      
       stage_table = st.selectbox(
                         label = 'Stage Table',
-                        options = lst_stage_tables
+                        options = df_stage_tables
                         )
 
       hub_schema = st.selectbox(
                         label = 'Hub Schema',
-                        options = lst_db_schema
+                        options = df_db_schema
                         )
      
       hub_name = st.text_input(
@@ -113,10 +117,12 @@ with st.expander("Create new Hub load"):
       hub_alias = st.text_input(
                         label = 'Hub Alias'
                         )
+      
+      df_bk_columns = get_columns_by_table(stage_schema, stage_table)
      
       bk_columns = st.selectbox(
                         label = 'Business Key',
-                        options = ('test', 'test')
+                        options = df_bk_columns
                         )
 
 
