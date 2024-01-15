@@ -77,7 +77,7 @@ if "snowflake_account" not in st.session_state or \
 
 
 #get configuration
-df_link_load_config = get_link_load_config
+df_link_load_config = get_link_load_config()
 
 
 
