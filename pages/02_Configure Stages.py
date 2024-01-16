@@ -105,7 +105,8 @@ with side_grid[0][0]:
             
             #select box for stage schema
             stage_schema = st.selectbox(
-                              label = 'Stage Schema',
+                              label = 'Stage Schema:',
+                              key = 'add_stage_schema',
                               options = df_db_schema
                               )
 
@@ -113,6 +114,7 @@ with side_grid[0][0]:
             #select box for stage schema
             load_type = st.selectbox(
                               label = 'Load Type:',
+                              key = 'add_load_type',
                               options=[
                                     "DELTA",
                                     "FULL",
@@ -150,7 +152,8 @@ with side_grid[0][1]:
 
             #select box for stage schema
             stage_schema = st.selectbox(
-                              label = 'Stage Schema',
+                              label = 'Stage Schema:',
+                              key = 'delete_stage_schema',
                               options = df_db_schema
                               )
             
@@ -159,7 +162,7 @@ with side_grid[0][1]:
             if st.button("Delete Stage Configuration"):
 
                   # delete record in data frame
-                  df_stage_config = df_stage_config[df_stage_config['STAGE_SCHJEMA'] == stage_schema]
+                  df_stage_config = df_stage_config[df_stage_config['STAGE_SCHEMA'] == stage_schema]
                   
                   try:
                         push_stage_config(df_stage_config)
