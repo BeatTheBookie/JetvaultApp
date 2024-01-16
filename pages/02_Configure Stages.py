@@ -144,7 +144,7 @@ with side_grid[0][0]:
 
 with side_grid[0][1]:
 
-      with st.expander("Delete Stage Config"):
+      with st.expander("Delete Stage Config:"):
 
             #
             # drop object from a stage configuration
