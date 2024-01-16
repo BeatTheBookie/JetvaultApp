@@ -1,6 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
-
+import pandas as pd
 
 
 
@@ -8,7 +8,7 @@ import streamlit.components.v1 as components
 from helper.JetvaultApp_helper import get_stage_config
 from helper.JetvaultApp_helper import get_all_db_schema
 from helper.JetvaultApp_helper import push_stage_config
-
+from helper.JetvaultApp_helper import make_grid
 
 
 
@@ -82,45 +82,87 @@ if "snowflake_account" not in st.session_state or \
 
 
 
-
 #get configuration
 df_stage_config = get_stage_config()
 
-#get available db schemas
-df_db_schema = get_all_db_schema()
-lst_db_schema = df_db_schema['SCHEMA_NAME'].to_list()
 
 
-   
+#build container and colum grid
+side_grid = make_grid(1,2)
+
+
+
+with side_grid[0][0]:
+
+      with st.expander("Add Stage Config:"):
+
+            #
+            # create the whole object for a stage configuration
+            #
+
+            #get available db schemas
+            df_db_schema = get_all_db_schema()
+
+
+            #select box for stage schema
+            stage_schema = st.selectbox(
+                              label = 'Stage Schema',
+                              options = df_db_schema
+                              )
+
+
+            #select box for stage schema
+            load_type = st.selectbox(
+                              label = 'Load Type:',
+                              options=[
+                                    "DELTA",
+                                    "FULL",
+                                    "HISTORY",
+                                    ]
+                              )
+            
+
+            # Button to save connection info
+            if st.button("Save Stage Configuration"):
+                  
+                  # add entry to data frame
+                  new_config_record = [{'STAGE_SCHEMA' : stage_schema,
+                                    'LOAD_TYPE' : load_type
+                                    }]
+                  
+                  # add new hub load to data frame
+                  df_stage_config = pd.concat([df_stage_config, pd.DataFrame(new_config_record)], ignore_index=True)
+
+                  try:
+                        push_stage_config(df_stage_config)
+                        st.success("Configuration successfully saved to database.")
+                  except Exception as e:
+                        st.error(f"Error saving configuration: {str(e)}")
+                        
+
+
+with side_grid[0][1]:
+
+      with st.expander("Delete Stage Config"):
+
+            st.markdown("""
+            <p>
+            
+            bla bla
+            
+            </p>
+            """, unsafe_allow_html=True)
+
+
+
+
+
 # Display the result DataFrame using st.dataframe
-df_stage_config = st.data_editor(df_stage_config,
-                                    num_rows = "dynamic",
-                                    column_config={
-                                         "STAGE_SCHEMA": st.column_config.SelectboxColumn(
-                                                "Stage Schema",
-                                                help="Name of the stage schema",
-                                                options=lst_db_schema,
-                                                required=True
-                                          ),
-                                          "LOAD_TYPE": st.column_config.SelectboxColumn(
-                                                "Load Type",
-                                                help="Loading type for the stage schema",
-                                                width="medium",
-                                                options=[
-                                                "DELTA",
-                                                "FULL",
-                                                "HISTORY",
-                                                ],
-                                                required=True,
-                                          )}
-                                    )
+st.dataframe(
+            data = df_stage_config,
+            use_container_width = True
+            )
+   
 
 
-# Button to test connection
-if st.button("Save configuration"):
-      try:
-            push_stage_config(df_stage_config)
-            st.success("Configuration successfully saved to database.")
-      except Exception as e:
-            st.error(f"Error saving configuration: {str(e)}")
       
