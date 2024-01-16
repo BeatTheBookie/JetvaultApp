@@ -88,12 +88,12 @@ if "snowflake_schema" not in st.session_state:
 
 # Text inputs for Snowflake account, user, and password
 st.subheader("Connection Details")
-snowflake_account = st.text_input("Snowflake Account", st.session_state.snowflake_account)
-snowflake_user = st.text_input("User", st.session_state.snowflake_user)
-snowflake_password = st.text_input("Password", st.session_state.snowflake_password, type="password")
-snowflake_database = st.text_input("Database", st.session_state.snowflake_database)
-snowflake_warehouse = st.text_input("Warehouse", st.session_state.snowflake_warehouse)
-snowflake_schema = st.text_input("Meta data schema", st.session_state.snowflake_schema)
+snowflake_account =     st.text_input("Snowflake Account", st.session_state.snowflake_account)
+snowflake_user =        st.text_input("User", st.session_state.snowflake_user)
+snowflake_password =    st.text_input("Password", st.session_state.snowflake_password, type="password")
+snowflake_database =    st.text_input("Database", st.session_state.snowflake_database)
+snowflake_warehouse =   st.text_input("Warehouse", st.session_state.snowflake_warehouse)
+snowflake_schema =      st.text_input("Meta data schema", st.session_state.snowflake_schema)
 
 
 

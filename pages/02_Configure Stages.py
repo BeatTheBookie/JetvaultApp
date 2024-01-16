@@ -154,7 +154,7 @@ with side_grid[0][1]:
             stage_schema = st.selectbox(
                               label = 'Stage Schema:',
                               key = 'delete_stage_schema',
-                              options = df_db_schema
+                              options = df_stage_config['STAGE_SCHEMA'].unique().tolist()
                               )
             
 
@@ -162,7 +162,7 @@ with side_grid[0][1]:
             if st.button("Delete Stage Configuration"):
 
                   # delete record in data frame
-                  df_stage_config = df_stage_config[df_stage_config['STAGE_SCHEMA'] == stage_schema]
+                  df_stage_config = df_stage_config[df_stage_config['STAGE_SCHEMA'] != stage_schema]
                   
                   try:
                         push_stage_config(df_stage_config)
