@@ -85,6 +85,8 @@ if "snowflake_account" not in st.session_state or \
 #get configuration
 df_stage_config = get_stage_config()
 
+#get available db schemas
+df_db_schema = get_all_db_schema()
 
 
 #build container and colum grid
@@ -100,10 +102,7 @@ with side_grid[0][0]:
             # create the whole object for a stage configuration
             #
 
-            #get available db schemas
-            df_db_schema = get_all_db_schema()
-
-
+            
             #select box for stage schema
             stage_schema = st.selectbox(
                               label = 'Stage Schema',
@@ -138,20 +137,35 @@ with side_grid[0][0]:
                         st.success("Configuration successfully saved to database.")
                   except Exception as e:
                         st.error(f"Error saving configuration: {str(e)}")
-                        
+
 
 
 with side_grid[0][1]:
 
       with st.expander("Delete Stage Config"):
 
-            st.markdown("""
-            <p>
+            #
+            # drop object from a stage configuration
+            #
+
+            #select box for stage schema
+            stage_schema = st.selectbox(
+                              label = 'Stage Schema',
+                              options = df_db_schema
+                              )
             
-            bla bla
-            
-            </p>
-            """, unsafe_allow_html=True)
+
+             # Button to save connection info
+            if st.button("Delete Stage Configuration"):
+
+                  # delete record in data frame
+                  df_stage_config = df_stage_config[df_stage_config['STAGE_SCHJEMA'] == stage_schema]
+                  
+                  try:
+                        push_stage_config(df_stage_config)
+                        st.success("Configuration successfully saved to database.")
+                  except Exception as e:
+                        st.error(f"Error saving configuration: {str(e)}")
 
 
 
