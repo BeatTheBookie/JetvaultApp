@@ -198,7 +198,7 @@ with side_grid[0][1]:
                               )
             
 
-            filtered_df = df_hub_load_config[(df_hub_load_config['STAGE_SCHEMA'] == stage_schema) & (df_hub_load_config['STAGE_TABLE'] == stage_table)]
+            filtered_df = df_hub_load_config[(df_hub_load_config['STAGE_SCHEMA'] == stage_schema & df_hub_load_config['STAGE_TABLE'] == stage_table)]
             lst_hub_name = filterd_df['HUB_NAME'].unique().tolist()
 
 
@@ -214,9 +214,9 @@ with side_grid[0][1]:
                   
                   # delete record in data frame
                   df_hub_load_config = df_hub_load_config[
-                                                (df_hub_load_config['STAGE_SCHEMA'] != stage_schema) &
-                                                (df_hub_load_config['STAGE_TABLE'] != stage_table) &
-                                                (df_hub_load_config['HUB_NAME'] != hub_name)
+                                                df_hub_load_config['STAGE_SCHEMA'] != stage_schema &
+                                                df_hub_load_config['STAGE_TABLE'] != stage_table &
+                                                df_hub_load_config['HUB_NAME'] != hub_name
                                                 ]
                   
                   try:
