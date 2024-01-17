@@ -104,6 +104,7 @@ with side_grid[0][0]:
             #select box for stage schema
             stage_schema = st.selectbox(
                               label = 'Stage Schema',
+                              key = 'add_stage_schema',
                               options = df_db_schema
                               )
             
@@ -113,23 +114,27 @@ with side_grid[0][0]:
             # select box for filtered tables
             stage_table = st.selectbox(
                               label = 'Stage Table',
+                              key = 'add_stage_table',
                               options = df_stage_tables
                               )
             
             # hub schema selection based on schema list
             hub_schema = st.selectbox(
                               label = 'Hub Schema',
+                              key = 'add_hub_schema',
                               options = df_db_schema
                               )
       
             # manual input for hub name
             hub_name = st.text_input(
-                              label = 'Hub Name'
+                              label = 'Hub Name',
+                              key = 'add_hub_name'
                               )
 
             # manual input for hub alias
             hub_alias = st.text_input(
-                              label = 'Hub Alias'
+                              label = 'Hub Alias',
+                              key = 'add_hub_alias'
                               )
 
             if hub_alias == "":
@@ -141,12 +146,10 @@ with side_grid[0][0]:
             # multi selection for business key columns of stage table
             bk_columns = st.multiselect(
                               label = 'Business Key',
+                              key = 'add_bk_columns',
                               options = df_bk_columns
                               )
-            
-
-            st.write(bk_columns)
-
+       
 
             # Button to save connection info
             if st.button("Save Hub Load"):
@@ -171,14 +174,43 @@ with side_grid[0][0]:
 with side_grid[0][1]:
 
       with st.expander("Delete Hub load"):
+            
 
-            st.markdown("""
-            <p>
+            #
+            # drop object from a stage configuration
+            #
+
+            #select box for stage schema
+            stage_schema = st.selectbox(
+                              label = 'Stage Schema:',
+                              key = 'delete_stage_schema',
+                              options = df_hub_load_config['STAGE_SCHEMA'].unique().tolist()
+                              )
             
-            bla bla
+            lst_stage_table = df_hub_load_config[df_hub_load_config['STAGE_SCHEMA'] != stage_schema]['STAGE_TABLE'].unique().tolist()
+
             
-            </p>
-            """, unsafe_allow_html=True)
+            stage_table = st.selectbox(
+                              label = 'Stage Table:',
+                              key = 'delete_stage_table',
+                              options = df_hub_load_config['STAGE_SCHEMA'].unique().tolist()
+                              )
+
+
+             # Button to save connection info
+            if st.button("Delete Hub Load"):
+                  
+                  st.success("Configuration successfully saved to database.")
+                  
+                  # delete record in data frame
+                  # df_stage_config = df_stage_config[df_stage_config['STAGE_SCHEMA'] != stage_schema]
+                  
+                  #try:
+                  #      push_stage_config(df_stage_config)
+                  #      st.success("Configuration successfully saved to database.")
+                  #except Exception as e:
+                  #      st.error(f"Error saving configuration: {str(e)}")
+
 
 
 
