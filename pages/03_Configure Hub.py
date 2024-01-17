@@ -177,7 +177,7 @@ with side_grid[0][1]:
             
 
             #
-            # drop object from a stage configuration
+            # drop object from a hub configuration
             #
 
             #select box for stage schema
@@ -187,7 +187,8 @@ with side_grid[0][1]:
                               options = df_hub_load_config['STAGE_SCHEMA'].unique().tolist()
                               )
             
-            lst_stage_table = df_hub_load_config[df_hub_load_config['STAGE_SCHEMA'] != stage_schema]['STAGE_TABLE'].unique().tolist()
+            filterd_df = df_hub_load_config[df_hub_load_config['STAGE_SCHEMA'] == stage_schema]
+            lst_stage_table = filterd_df['STAGE_TABLE'].unique().tolist()
 
             
             stage_table = st.selectbox(
@@ -195,21 +196,34 @@ with side_grid[0][1]:
                               key = 'delete_stage_table',
                               options = lst_stage_table
                               )
+            
+
+            filtered_df = df_hub_load_config[(df_hub_load_config['STAGE_SCHEMA'] == stage_schema) & (df_hub_load_config['STAGE_TABLE'] == stage_table)]
+            lst_hub_name = filterd_df['HUB_NAME'].unique().tolist()
 
 
-             # Button to save connection info
+            hub_name = st.selectbox(
+                              label = 'Hub Name:',
+                              key = 'delete_hub_name',
+                              options = lst_hub_name
+                              )
+
+
+            # Button to save connection info
             if st.button("Delete Hub Load"):
                   
-                  st.success("Configuration successfully saved to database.")
-
                   # delete record in data frame
-                  # df_stage_config = df_stage_config[df_stage_config['STAGE_SCHEMA'] != stage_schema]
+                  df_hub_load_config = df_hub_load_config[
+                                                (df_hub_load_config['STAGE_SCHEMA'] != stage_schema) &
+                                                (df_hub_load_config['STAGE_TABLE'] != stage_table) &
+                                                (df_hub_load_config['HUB_NAME'] != hub_name)
+                                                ]
                   
-                  #try:
-                  #      push_stage_config(df_stage_config)
-                  #      st.success("Configuration successfully saved to database.")
-                  #except Exception as e:
-                  #      st.error(f"Error saving configuration: {str(e)}")
+                  try:
+                        push_hub_load_config(df_hub_load_config)
+                        st.success("Configuration successfully saved to database.")
+                  except Exception as e:
+                        st.error(f"Error saving configuration: {str(e)}")
 
 
 
