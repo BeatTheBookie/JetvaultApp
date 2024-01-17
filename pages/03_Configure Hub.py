@@ -187,8 +187,8 @@ with side_grid[0][1]:
                               options = df_hub_load_config['STAGE_SCHEMA'].unique().tolist()
                               )
             
-            filterd_df = df_hub_load_config[df_hub_load_config['STAGE_SCHEMA'] == stage_schema]
-            lst_stage_table = filterd_df['STAGE_TABLE'].unique().tolist()
+            filterd_stage_schema_df = df_hub_load_config[df_hub_load_config['STAGE_SCHEMA'] == stage_schema]
+            lst_stage_table = filterd_stage_schema_df['STAGE_TABLE'].unique().tolist()
 
             
             stage_table = st.selectbox(
@@ -198,8 +198,8 @@ with side_grid[0][1]:
                               )
             
 
-            filtered_df = df_hub_load_config[(df_hub_load_config['STAGE_SCHEMA'] == stage_schema & df_hub_load_config['STAGE_TABLE'] == stage_table)]
-            lst_hub_name = filterd_df['HUB_NAME'].unique().tolist()
+            filtered_stage_table_df = df_hub_load_config[(df_hub_load_config['STAGE_SCHEMA'] == stage_schema & df_hub_load_config['STAGE_TABLE'] == stage_table)]
+            lst_hub_name = filtered_stage_table_df['HUB_NAME'].unique().tolist()
 
 
             hub_name = st.selectbox(
