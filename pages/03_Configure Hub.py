@@ -198,7 +198,7 @@ with side_grid[0][1]:
                               )
             
 
-            filtered_stage_table_df = df_hub_load_config[(df_hub_load_config['STAGE_SCHEMA'] == stage_schema & df_hub_load_config['STAGE_TABLE'] == stage_table)]
+            filtered_stage_table_df = filterd_stage_schema_df[(filterd_stage_schema_df['STAGE_TABLE'] == stage_table)]
             lst_hub_name = filtered_stage_table_df['HUB_NAME'].unique().tolist()
 
 
