@@ -193,7 +193,7 @@ with side_grid[0][1]:
             stage_table = st.selectbox(
                               label = 'Stage Table:',
                               key = 'delete_stage_table',
-                              options = df_hub_load_config['STAGE_SCHEMA'].unique().tolist()
+                              options = lst_stage_table
                               )
 
 
@@ -201,7 +201,7 @@ with side_grid[0][1]:
             if st.button("Delete Hub Load"):
                   
                   st.success("Configuration successfully saved to database.")
-                  
+
                   # delete record in data frame
                   # df_stage_config = df_stage_config[df_stage_config['STAGE_SCHEMA'] != stage_schema]
                   
