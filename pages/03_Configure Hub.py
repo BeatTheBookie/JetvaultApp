@@ -211,7 +211,11 @@ with side_grid[0][1]:
 
             # Button to save connection info
             if st.button("Delete Hub Load"):
-                  
+
+                  st.write(stage_schema)
+                  st.write(stage_table)
+                  st.write(hub_name)
+
                   # delete record in data frame
                   df_hub_load_config = df_hub_load_config[
                                                 (df_hub_load_config['STAGE_SCHEMA'] != stage_schema) &
@@ -219,6 +223,8 @@ with side_grid[0][1]:
                                                 (df_hub_load_config['HUB_NAME'] != hub_name)
                                                 ]
                   
+                  str.write(df_hub_load_config)
+
                   try:
                         push_hub_load_config(df_hub_load_config)
                         st.success("Configuration successfully saved to database.")
