@@ -128,8 +128,8 @@ with side_grid[0][0]:
 
             # attributes
             # get all columns for selected stage table
-            stage_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['STAGE_SCHEMA'].unique().tolist()  
-            sat_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['HUB_SCHEMA'].unique().tolist()  
+            stage_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['STAGE_SCHEMA'][0]
+            sat_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['HUB_SCHEMA'][0]
 
             st.write(stage_schema)
             st.write(sat_schema)
