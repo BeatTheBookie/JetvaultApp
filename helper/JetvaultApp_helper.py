@@ -171,7 +171,7 @@ def get_sat_load_config():
                     sat_schema,
                     SAT_NAME,
                     REFERENCED_OBJECT_NAME,
-                    DELTA_HASH_SRC_COLUMN_LIST ATTRIBUTES
+                    DELTA_HASH_SRC_COLUMN_LIST
                 FROM 
                     META.SATELLITE_LOAD
                 ORDER BY 1,2,4"""

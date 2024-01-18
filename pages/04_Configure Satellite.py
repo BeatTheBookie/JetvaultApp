@@ -151,7 +151,7 @@ with side_grid[0][0]:
                                     'SAT_SCHEMA' : sat_schema,
                                     'SAT_NAME' : sat_name,                                    
                                     'REFERENCED_OBJECT_NAME' : hub_name,                                    
-                                    'ATTRIBUTES' : ','.join(attribute_columns)
+                                    'DELTA_HASH_SRC_COLUMN_LIST' : ','.join(attribute_columns)
                                     }]
                   
                   # add new hub load to data frame
