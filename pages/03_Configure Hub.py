@@ -223,7 +223,7 @@ with side_grid[0][1]:
                                                 (df_hub_load_config['HUB_NAME'] != hub_name)
                                                 ]
                   
-                  str.write(df_hub_load_config)
+                  st.write(df_hub_load_config)
 
                   try:
                         push_hub_load_config(df_hub_load_config)
