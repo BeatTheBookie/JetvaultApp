@@ -220,8 +220,8 @@ with side_grid[0][1]:
 
                   # delete record in data frame
                   df_hub_load_config = df_hub_load_config[
-                                                (df_hub_load_config['STAGE_SCHEMA'] != stage_schema) &
-                                                (df_hub_load_config['STAGE_TABLE'] != stage_table) &
+                                                (df_hub_load_config['STAGE_SCHEMA'] != stage_schema) |
+                                                (df_hub_load_config['STAGE_TABLE'] != stage_table) |
                                                 (df_hub_load_config['HUB_NAME'] != hub_name)
                                                 ]
                   
