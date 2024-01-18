@@ -131,9 +131,6 @@ with side_grid[0][0]:
             stage_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['STAGE_SCHEMA'][0]
             sat_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['HUB_SCHEMA'][0]
 
-            st.write(stage_schema)
-            st.write(sat_schema)
-
             df_attribute_columns = get_columns_by_table(stage_schema, stage_table)
 
 
@@ -161,7 +158,7 @@ with side_grid[0][0]:
                   df_sat_load_config = pd.concat([df_sat_load_config, pd.DataFrame(new_sat_records)], ignore_index=True)
 
 
-                  push_sat_load_config(df_hub_load_config)
+                  push_sat_load_config(df_sat_load_config)
 
                   
                   st.success("Satellite Load added successfully!")
