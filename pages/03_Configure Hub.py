@@ -216,6 +216,8 @@ with side_grid[0][1]:
                   st.write(stage_table)
                   st.write(hub_name)
 
+                  st.write(df_hub_load_config)
+
                   # delete record in data frame
                   df_hub_load_config = df_hub_load_config[
                                                 (df_hub_load_config['STAGE_SCHEMA'] != stage_schema) &
