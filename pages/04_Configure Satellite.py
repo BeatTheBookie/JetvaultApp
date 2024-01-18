@@ -131,6 +131,9 @@ with side_grid[0][0]:
             stage_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['STAGE_SCHEMA']
             sat_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['HUB_SCHEMA']
 
+            st.write(stage_schema)
+            st.write(sat_schema)
+
             df_attribute_columns = get_columns_by_table(stage_schema, stage_table)
 
 
