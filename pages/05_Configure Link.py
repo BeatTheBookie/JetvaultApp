@@ -126,10 +126,11 @@ with side_grid[0][0]:
             
             # filter available hub loads for stage table
             # select source for the hub
-            filtered_hub_loads = df_hub_load_config[(
-                                                      df_hub_load_config['STAGE_SCHEMA'] == stage_schema &
-                                                      df_hub_load_config['STAGE_TABLE'] == stage_table
-                                                      )]
+            filtered_hub_loads = df_hub_load_config[
+                                                      (df_hub_load_config['STAGE_SCHEMA'] == stage_schema) &
+                                                      (df_hub_load_config['STAGE_TABLE'] == stage_table)
+                                                      ]
+            
             lst_hub = filtered_hub_loads['HUB_NAME'].unique().tolist() 
 
             link_schema = filtered_hub_loads['HUB_SCHEMA'][0]
