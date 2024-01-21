@@ -261,6 +261,36 @@ def get_link_load_config():
 
 
 
+# write stage config back to the database
+def push_link_load_config(df_link_config):
+    try:
+        conn = snowflake.connector.connect(
+            user=st.session_state.snowflake_user,
+            password=st.session_state.snowflake_password,
+            account=st.session_state.snowflake_account,
+            warehouse = st.session_state.snowflake_warehouse,
+            database=st.session_state.snowflake_database,
+            schema=st.session_state.snowflake_schema
+            )            
+
+        # truncate table
+        conn.cursor().execute("truncate table LINK_LOAD")
+
+        # import data frame in empty table
+        success, nchunks, nrows, _ = write_pandas(conn=conn, 
+                                                df =  df_link_config,
+                                                table_name = 'LINK_LOAD'
+                                                )
+
+        # Close the connection
+        conn.close()
+        
+    except Exception as e:
+        st.error(f"Error executing SQL query: {str(e)}")
+        return None
+
+
+
 #
 # Get and save transactional link load configuration
 #
