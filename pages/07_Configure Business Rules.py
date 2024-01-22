@@ -208,7 +208,7 @@ with side_grid[0][1]:
             #select box for stage schema
             br_schema = st.selectbox(
                               label = 'Business Rule Schema',
-                              key = 'add_br_schema',
+                              key = 'delete_br_schema',
                               options = df_db_schema
                               )
 
@@ -218,7 +218,7 @@ with side_grid[0][1]:
             # select box for filtered tables
             br_table = st.selectbox(
                               label = 'Business Rule',
-                              key = 'add_br_table',
+                              key = 'delete_br_table',
                               options = df_br_tables
                               )
             
