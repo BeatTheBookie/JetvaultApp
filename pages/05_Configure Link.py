@@ -175,7 +175,7 @@ with side_grid[0][0]:
                                     'STAGE_TABLE' : stage_table,
                                     'LINK_SCHEMA' : link_schema,
                                     'LINK_NAME' : link_name,
-                                    'LINK_HASH_COLUMN' : link_hk,
+                                    'L_COLUMN_NAME' : link_hk,
                                     'REFERENCED_HUB_NAME_1' : hub_table_1,
                                     'REFERENCED_HUB_NAME_2' : hub_table_2                                    
                                     }]

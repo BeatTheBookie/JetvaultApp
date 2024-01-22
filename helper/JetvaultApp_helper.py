@@ -201,7 +201,7 @@ def get_link_load_config():
                     stage_table,
                     link_schema,
                     LINK_NAME,
-                    L_COLUMN_NAME link_hash_column,
+                    L_COLUMN_NAME,
                     REFERENCED_HUB_NAME_1,
                     REFERENCED_HUB_NAME_2
                 FROM 
