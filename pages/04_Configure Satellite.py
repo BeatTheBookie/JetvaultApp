@@ -126,26 +126,17 @@ with side_grid[0][0]:
                               key = 'add_sat_name'
                               )
             
-            st.write(filtered_hub_loads)
 
             # attributes
             # get all columns for selected stage table
 
             filtered_hub_loads = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]
 
-            st.write(filtered_hub_loads)
 
             stage_schema = filtered_hub_loads['STAGE_SCHEMA'].unique().tolist()[0]
-
-            st.write(stage_schema)
-
-            filtered_hub_loads = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]
-
-            st.write(filtered_hub_loads)
-
             sat_schema = filtered_hub_loads['HUB_SCHEMA'].unique().tolist()[0]
 
-            st.write(sat_schema)
+
 
             df_attribute_columns = get_columns_by_table(stage_schema, stage_table)
 
