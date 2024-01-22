@@ -230,7 +230,7 @@ with side_grid[0][1]:
                   # delete record in data frame
                   df_br_config = df_br_config[
                                           (df_br_config['BUSINESS_RULE_SCHEMA'] != br_schema) |
-                                          (df_br_config['BUSINESS_RULE_NAME'] != df_br_tables)                                          
+                                          (df_br_config['BUSINESS_RULE_NAME'] != br_table)                                          
                                           ]            
                   
                   try:
