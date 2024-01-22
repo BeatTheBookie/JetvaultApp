@@ -98,7 +98,7 @@ side_grid = make_grid(1,2)
 
 with side_grid[0][0]:
 
-      with st.expander("Create new Hub load"):
+      with st.expander("Create new Link load"):
             
             #
             # create the whole object for a hub configuration
