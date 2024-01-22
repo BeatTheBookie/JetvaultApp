@@ -135,6 +135,8 @@ with side_grid[0][0]:
             
             lst_hub = filtered_hub_loads['HUB_NAME'].unique().tolist() 
 
+            st.write(lst_hub)
+
             link_schema = filtered_hub_loads['HUB_SCHEMA'][0]
 
             # select box for filtered tables
