@@ -226,6 +226,9 @@ with side_grid[0][1]:
             # Button to save connection info
             if st.button("Delete Business Rule Load"):
 
+                  st.write(br_schema)
+                  st.write(br_table)
+
                   # delete record in data frame
                   # delete record in data frame
                   df_br_config = df_br_config[
