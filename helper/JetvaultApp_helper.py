@@ -48,24 +48,14 @@ def get_db_connection():
 # get configured stage schema
 def get_stage_config():
     try:
-        conn = snowflake.connector.connect(
-            user=st.session_state.snowflake_user,
-            password=st.session_state.snowflake_password,
-            account=st.session_state.snowflake_account,
-            warehouse = st.session_state.snowflake_warehouse,
-            database=st.session_state.snowflake_database,
-            schema=st.session_state.snowflake_schema
-            )            
-
+        conn = get_db_connection()
+        
         # Your SQL query
         query = "SELECT stage_schema, LOAD_TYPE FROM META.LOAD_CONFIG order by stage_schema"
 
         # Execute the query and fetch results into a DataFrame
         df = pd.read_sql_query(query, conn)
-
-        # Close the connection
-        conn.close()
-
+        
         return df
     except Exception as e:
         st.error(f"Error executing SQL query: {str(e)}")
@@ -75,14 +65,7 @@ def get_stage_config():
 # write stage config back to the database
 def push_stage_config(df_stage_config):
     try:
-        conn = snowflake.connector.connect(
-            user=st.session_state.snowflake_user,
-            password=st.session_state.snowflake_password,
-            account=st.session_state.snowflake_account,
-            warehouse = st.session_state.snowflake_warehouse,
-            database=st.session_state.snowflake_database,
-            schema=st.session_state.snowflake_schema
-            )            
+        conn = get_db_connection()         
 
         # truncate table
         conn.cursor().execute("truncate table LOAD_CONFIG")
@@ -92,10 +75,7 @@ def push_stage_config(df_stage_config):
                                                 df =  df_stage_config,
                                                 table_name = 'LOAD_CONFIG'
                                                 )
-
-        # Close the connection
-        conn.close()
-        
+                
     except Exception as e:
         st.error(f"Error executing SQL query: {str(e)}")
         return None
@@ -110,14 +90,7 @@ def push_stage_config(df_stage_config):
 # get configured stage schema
 def get_hub_load_config():
     try:
-        conn = snowflake.connector.connect(
-            user=st.session_state.snowflake_user,
-            password=st.session_state.snowflake_password,
-            account=st.session_state.snowflake_account,
-            warehouse = st.session_state.snowflake_warehouse,
-            database=st.session_state.snowflake_database,
-            schema=st.session_state.snowflake_schema
-            )            
+        conn = get_db_connection()         
 
         # Your SQL query
         query = """SELECT 
@@ -133,9 +106,7 @@ def get_hub_load_config():
 
         # Execute the query and fetch results into a DataFrame
         df = pd.read_sql_query(query, conn)
-
-        # Close the connection
-        conn.close()
+       
 
         return df
     except Exception as e:
@@ -146,14 +117,7 @@ def get_hub_load_config():
 # write stage config back to the database
 def push_hub_load_config(df_hub_config):
     try:
-        conn = snowflake.connector.connect(
-            user=st.session_state.snowflake_user,
-            password=st.session_state.snowflake_password,
-            account=st.session_state.snowflake_account,
-            warehouse = st.session_state.snowflake_warehouse,
-            database=st.session_state.snowflake_database,
-            schema=st.session_state.snowflake_schema
-            )            
+        conn = get_db_connection()           
 
         # truncate table
         conn.cursor().execute("truncate table HUB_LOAD")
@@ -163,9 +127,7 @@ def push_hub_load_config(df_hub_config):
                                                 df =  df_hub_config,
                                                 table_name = 'HUB_LOAD'
                                                 )
-
-        # Close the connection
-        conn.close()
+       
         
     except Exception as e:
         st.error(f"Error executing SQL query: {str(e)}")
@@ -179,14 +141,7 @@ def push_hub_load_config(df_hub_config):
 
 def get_sat_load_config():
     try:
-        conn = snowflake.connector.connect(
-            user=st.session_state.snowflake_user,
-            password=st.session_state.snowflake_password,
-            account=st.session_state.snowflake_account,
-            warehouse = st.session_state.snowflake_warehouse,
-            database=st.session_state.snowflake_database,
-            schema=st.session_state.snowflake_schema
-            )            
+        conn = get_db_connection()          
 
         # Your SQL query
         query = """SELECT 
@@ -202,9 +157,7 @@ def get_sat_load_config():
 
         # Execute the query and fetch results into a DataFrame
         df = pd.read_sql_query(query, conn)
-
-        # Close the connection
-        conn.close()
+       
 
         return df
     except Exception as e:
@@ -216,14 +169,7 @@ def get_sat_load_config():
 # write stage config back to the database
 def push_sat_load_config(df_sat_config):
     try:
-        conn = snowflake.connector.connect(
-            user=st.session_state.snowflake_user,
-            password=st.session_state.snowflake_password,
-            account=st.session_state.snowflake_account,
-            warehouse = st.session_state.snowflake_warehouse,
-            database=st.session_state.snowflake_database,
-            schema=st.session_state.snowflake_schema
-            )            
+        conn = get_db_connection()          
 
         # truncate table
         conn.cursor().execute("truncate table SATELLITE_LOAD")
@@ -233,9 +179,7 @@ def push_sat_load_config(df_sat_config):
                                                 df =  df_sat_config,
                                                 table_name = 'SATELLITE_LOAD'
                                                 )
-
-        # Close the connection
-        conn.close()
+        
         
     except Exception as e:
         st.error(f"Error executing SQL query: {str(e)}")
@@ -249,14 +193,7 @@ def push_sat_load_config(df_sat_config):
 
 def get_link_load_config():
     try:
-        conn = snowflake.connector.connect(
-            user=st.session_state.snowflake_user,
-            password=st.session_state.snowflake_password,
-            account=st.session_state.snowflake_account,
-            warehouse = st.session_state.snowflake_warehouse,
-            database=st.session_state.snowflake_database,
-            schema=st.session_state.snowflake_schema
-            )            
+        conn = get_db_connection()        
 
         # Your SQL query
         query = """SELECT 
@@ -274,8 +211,6 @@ def get_link_load_config():
         # Execute the query and fetch results into a DataFrame
         df = pd.read_sql_query(query, conn)
 
-        # Close the connection
-        conn.close()
 
         return df
     except Exception as e:
@@ -288,14 +223,7 @@ def get_link_load_config():
 # write stage config back to the database
 def push_link_load_config(df_link_config):
     try:
-        conn = snowflake.connector.connect(
-            user=st.session_state.snowflake_user,
-            password=st.session_state.snowflake_password,
-            account=st.session_state.snowflake_account,
-            warehouse = st.session_state.snowflake_warehouse,
-            database=st.session_state.snowflake_database,
-            schema=st.session_state.snowflake_schema
-            )            
+        conn = get_db_connection()          
 
         # truncate table
         conn.cursor().execute("truncate table LINK_LOAD")
@@ -305,9 +233,6 @@ def push_link_load_config(df_link_config):
                                                 df =  df_link_config,
                                                 table_name = 'LINK_LOAD'
                                                 )
-
-        # Close the connection
-        conn.close()
         
     except Exception as e:
         st.error(f"Error executing SQL query: {str(e)}")
@@ -325,23 +250,13 @@ def push_link_load_config(df_link_config):
 # get all available schemas in 
 def get_all_db_schema():
     try:
-        conn = snowflake.connector.connect(
-            user=st.session_state.snowflake_user,
-            password=st.session_state.snowflake_password,
-            account=st.session_state.snowflake_account,
-            warehouse = st.session_state.snowflake_warehouse,
-            database=st.session_state.snowflake_database,
-            schema=st.session_state.snowflake_schema
-            )            
+        conn = get_db_connection()         
 
         # Your SQL query
         query = "SELECT schema_name FROM INFORMATION_SCHEMA.SCHEMATA"
 
         # Execute the query and fetch results into a DataFrame
         df = pd.read_sql_query(query, conn)
-
-        # Close the connection
-        conn.close()
 
         return df
     except Exception as e:
@@ -354,14 +269,7 @@ def get_all_db_schema():
 def get_tables_by_schema(schema_name):
 
     try:
-        conn = snowflake.connector.connect(
-            user=st.session_state.snowflake_user,
-            password=st.session_state.snowflake_password,
-            account=st.session_state.snowflake_account,
-            warehouse = st.session_state.snowflake_warehouse,
-            database=st.session_state.snowflake_database,
-            schema=st.session_state.snowflake_schema
-            )            
+        conn = get_db_connection()           
 
         # Your SQL query
         query = """SELECT 
@@ -378,8 +286,6 @@ def get_tables_by_schema(schema_name):
         # Execute the query and fetch results into a DataFrame
         df = pd.read_sql_query(query, conn)
 
-        # Close the connection
-        conn.close()
 
         return df
     except Exception as e:
@@ -392,14 +298,7 @@ def get_tables_by_schema(schema_name):
 def get_columns_by_table(schema_name, table_name):
 
     try:
-        conn = snowflake.connector.connect(
-            user=st.session_state.snowflake_user,
-            password=st.session_state.snowflake_password,
-            account=st.session_state.snowflake_account,
-            warehouse = st.session_state.snowflake_warehouse,
-            database=st.session_state.snowflake_database,
-            schema=st.session_state.snowflake_schema
-            )            
+        conn = get_db_connection()        
 
         # Your SQL query
         query = """SELECT 
@@ -415,9 +314,7 @@ def get_columns_by_table(schema_name, table_name):
         # Execute the query and fetch results into a DataFrame
         df = pd.read_sql_query(query, conn)
 
-        # Close the connection
-        conn.close()
-
+        
         return df
     except Exception as e:
         st.error(f"Error executing SQL query: {str(e)}")
