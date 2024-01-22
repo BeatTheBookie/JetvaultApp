@@ -173,7 +173,7 @@ with side_grid[0][0]:
                   br_stage_schema = None
 
            # Button to save connection info
-            if st.button("Save Hub Load"):
+            if st.button("Save Business Rule Load"):
 
 
                   # add entry to data frame
@@ -194,7 +194,7 @@ with side_grid[0][0]:
                   
                   push_br_load_config(df_br_config)
 
-                  st.success("Hub Load added successfully!")
+                  st.success("Business Rule Load added successfully!")
 
 
 
