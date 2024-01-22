@@ -130,6 +130,8 @@ with side_grid[0][0]:
                                                       (df_hub_load_config['STAGE_SCHEMA'] == stage_schema) &
                                                       (df_hub_load_config['STAGE_TABLE'] == stage_table)
                                                       ]
+
+            st.write(filtered_hub_loads)
             
             lst_hub = filtered_hub_loads['HUB_NAME'].unique().tolist() 
 
