@@ -130,7 +130,12 @@ with side_grid[0][0]:
 
             # attributes
             # get all columns for selected stage table
-            stage_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['STAGE_SCHEMA'][0]
+
+            filtered_hub_loads = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]
+
+            st.write(filtered_hub_loads)
+
+            stage_schema = filtered_hub_loads['STAGE_SCHEMA'][0]
             sat_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['HUB_SCHEMA'][0]
 
             df_attribute_columns = get_columns_by_table(stage_schema, stage_table)
