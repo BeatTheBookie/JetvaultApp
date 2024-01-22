@@ -220,7 +220,7 @@ with side_grid[0][1]:
                                                 ]
 
                   try:
-                        #push_hub_load_config(df_hub_load_config)
+                        push_link_load_config(df_link_load_config)
                         st.success("Configuration successfully saved to database.")
                   except Exception as e:
                         st.error(f"Error saving configuration: {str(e)}")
