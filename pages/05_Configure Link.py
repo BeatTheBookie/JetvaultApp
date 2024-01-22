@@ -133,7 +133,7 @@ with side_grid[0][0]:
 
             lst_hub = filtered_hub_loads['HUB_NAME'].unique().tolist() 
 
-            
+            st.write(filtered_hub_loads)            
 
             if not lst_hub:
                   link_schema = None
