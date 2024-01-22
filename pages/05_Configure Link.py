@@ -131,16 +131,16 @@ with side_grid[0][0]:
                                                       (df_hub_load_config['STAGE_TABLE'] == stage_table)
                                                       ]
 
-            st.write(filtered_hub_loads)
-            
             lst_hub = filtered_hub_loads['HUB_NAME'].unique().tolist() 
 
-            st.write(lst_hub)
+            
 
-            link_schema = filtered_hub_loads['HUB_SCHEMA'][0]
+            if not lst_hub:
+                  link_schema = None
+            else:
+                  link_schema = filtered_hub_loads['HUB_SCHEMA'][0]
 
-            st.write(link_schema)
-
+            
             # select box for filtered tables
             hub_table_1 = st.selectbox(
                               label = 'Hub Load 1',
