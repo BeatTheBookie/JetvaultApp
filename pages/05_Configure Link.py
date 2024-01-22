@@ -139,6 +139,8 @@ with side_grid[0][0]:
 
             link_schema = filtered_hub_loads['HUB_SCHEMA'][0]
 
+            st.write(link_schema)
+
             # select box for filtered tables
             hub_table_1 = st.selectbox(
                               label = 'Hub Load 1',
