@@ -247,6 +247,61 @@ def push_link_load_config(df_link_config):
 
 
 
+#
+# Get and save transactional link load configuration
+#
+    
+
+def get_br_load_config():
+    
+    try:
+        conn = get_db_connection()        
+
+        # Your SQL query
+        query = """SELECT 
+                    *
+                FROM 
+                    META.BUSINESS_RULES
+                ORDER BY 1,2,4"""
+
+        # Execute the query and fetch results into a DataFrame
+        df = pd.read_sql_query(query, conn)
+
+
+        return df
+    except Exception as e:
+        st.error(f"Error executing SQL query: {str(e)}")
+        return None
+
+
+
+# write stage config back to the database
+def push_br_load_config(df_br_config):
+    try:
+        conn = get_db_connection()          
+
+        # truncate table
+        conn.cursor().execute("truncate table BUSINESS_RULES")
+
+        # import data frame in empty table
+        success, nchunks, nrows, _ = write_pandas(conn=conn, 
+                                                df =  df_br_config,
+                                                table_name = 'BUSINESS_RULES'
+                                                )
+        
+    except Exception as e:
+        st.error(f"Error executing SQL query: {str(e)}")
+        return None
+
+
+
+#
+# other helping functions to get meta information from the database
+#
+
+
+
+
 # get all available schemas in 
 def get_all_db_schema():
     try:
@@ -294,7 +349,7 @@ def get_tables_by_schema(schema_name):
     
 
 
-# get table for a given schema
+# get columns from a given table
 def get_columns_by_table(schema_name, table_name):
 
     try:
