@@ -135,7 +135,7 @@ with side_grid[0][0]:
 
             st.write(filtered_hub_loads)
 
-            stage_schema = filtered_hub_loads['STAGE_SCHEMA'][0]
+            stage_schema = filtered_hub_loads['STAGE_SCHEMA'].unique().tolist()[0]
 
             st.write(stage_schema)
 
@@ -143,7 +143,7 @@ with side_grid[0][0]:
 
             st.write(filtered_hub_loads)
 
-            sat_schema = filtered_hub_loads['HUB_SCHEMA'][0]
+            sat_schema = filtered_hub_loads['HUB_SCHEMA'][0].unique().tolist()[0]
 
             st.write(sat_schema)
 
