@@ -109,6 +109,7 @@ with side_grid[0][0]:
                               options = lst_hub_table
                               )
             
+                     
             # select source for the hub
             filtered_hub_loads = df_hub_load_config[df_hub_load_config['HUB_NAME'] == hub_name]
             lst_stage_table = filtered_hub_loads['STAGE_TABLE'].unique().tolist()    
@@ -124,7 +125,8 @@ with side_grid[0][0]:
                               label = 'Satellite Name',
                               key = 'add_sat_name'
                               )
-
+            
+            st.write(filtered_hub_loads)
 
             # attributes
             # get all columns for selected stage table
