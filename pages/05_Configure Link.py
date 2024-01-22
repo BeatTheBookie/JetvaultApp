@@ -138,7 +138,7 @@ with side_grid[0][0]:
             if not lst_hub:
                   link_schema = None
             else:
-                  link_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['HUB_SCHEMA'].unique().tolist() 
+                  link_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['HUB_SCHEMA'].unique()
 
             
             # select box for filtered tables
@@ -176,10 +176,10 @@ with side_grid[0][0]:
                   new_link_records = [{'STAGE_SCHEMA' : stage_schema,
                                     'STAGE_TABLE' : stage_table,
                                     'LINK_SCHEMA' : link_schema,
-                                    'LINK_MAME' : link_name,
+                                    'LINK_NAME' : link_name,
                                     'LINK_HASH_COLUMN' : link_hk,
                                     'REFERENCED_HUB_NAME_1' : hub_table_1,
-                                    'REFERENCED_HUB_NAME_1' : hub_table_2                                    
+                                    'REFERENCED_HUB_NAME_2' : hub_table_2                                    
                                     }]
                   
                   # add new hub load to data frame
