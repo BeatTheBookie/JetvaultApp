@@ -139,6 +139,7 @@ with side_grid[0][0]:
                   link_schema = None
             else:
                   link_schema = filtered_hub_loads['HUB_SCHEMA'][0]
+                  link_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['HUB_SCHEMA'][0]
 
             
             # select box for filtered tables
@@ -155,7 +156,6 @@ with side_grid[0][0]:
                               options = lst_hub
                               )
             
-            link_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['HUB_SCHEMA'][0]
 
             # naming for link and link hash key
             link_name = st.text_input(
