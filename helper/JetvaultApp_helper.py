@@ -16,6 +16,30 @@ def make_grid(cols,rows):
 
 
 #
+# cache DB connection to Snowflake
+#
+
+@st.cache_resource
+def get_db_connection():
+
+    
+    try:
+        conn = snowflake.connector.connect(
+            user=st.session_state.snowflake_user,
+            password=st.session_state.snowflake_password,
+            account=st.session_state.snowflake_account,
+            warehouse = st.session_state.snowflake_warehouse,
+            database=st.session_state.snowflake_database,
+            schema=st.session_state.snowflake_schema
+            )    
+
+        return conn
+    except Exception as e:
+        st.error(f"Error executing SQL query: {str(e)}")
+        return None
+
+
+#
 # Get and save stage configuration
 #
 

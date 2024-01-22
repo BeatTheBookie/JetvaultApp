@@ -138,7 +138,6 @@ with side_grid[0][0]:
             if not lst_hub:
                   link_schema = None
             else:
-                  #link_schema = filtered_hub_loads['HUB_SCHEMA'][0]
                   link_schema = filtered_hub_loads[filtered_hub_loads['STAGE_TABLE'] == stage_table]['HUB_SCHEMA'].unique().tolist() 
 
             
