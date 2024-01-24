@@ -56,7 +56,7 @@ st.set_page_config(
 
 
 
-st.title("Jetvault Hub Load Configuration")
+st.title("Jetvault Business Rule Load Configuration")
 
 
 
