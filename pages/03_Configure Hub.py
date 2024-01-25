@@ -143,7 +143,7 @@ with side_grid[0][0]:
                   hub_alias = None
 
 
-            if stage_table:
+            if stage_table is not None:
             
                   # get all columns for selected stage table
                   df_bk_columns = get_columns_by_table(stage_schema, stage_table)
