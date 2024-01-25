@@ -100,6 +100,8 @@ with side_grid[0][0]:
 
             #get a list of all available schemas
             df_db_schema = get_all_db_schema()
+
+            st.write('Hallo')
             
             #select box for stage schema
             stage_schema = st.selectbox(
@@ -112,19 +114,13 @@ with side_grid[0][0]:
             # get all tables inside the stage schema
             df_stage_tables = get_tables_by_schema(stage_schema)
 
-            if df_stage_tables is not None:
-
-                  # select box for filtered tables
-                  stage_table = st.selectbox(
-                                    label = 'Stage Table',
-                                    key = 'add_stage_table',
-                                    options = df_stage_tables
-                                    )
-            
-            else:
-                  stage_table = None
-            
-            st.write('test:',stage_table)
+            # select box for filtered tables
+            stage_table = st.selectbox(
+                              label = 'Stage Table',
+                              key = 'add_stage_table',
+                              options = df_stage_tables
+                              )
+      
             
             # hub schema selection based on schema list
             hub_schema = st.selectbox(
