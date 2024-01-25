@@ -118,6 +118,8 @@ with side_grid[0][0]:
                               options = df_stage_tables
                               )
             
+            st.write('test:',stage_table)
+            
             # hub schema selection based on schema list
             hub_schema = st.selectbox(
                               label = 'Hub Schema',
@@ -139,8 +141,6 @@ with side_grid[0][0]:
 
             if hub_alias == "":
                   hub_alias = None
-
-            st.write('test:',stage_table)
 
 
             if stage_table:
