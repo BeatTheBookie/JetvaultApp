@@ -116,6 +116,7 @@ with side_grid[0][0]:
             stage_table = st.selectbox(
                               label = 'Stage Table',
                               key = 'add_stage_table'
+                              options = df_stage_tables
                               )
       
             
