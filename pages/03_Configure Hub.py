@@ -143,6 +143,8 @@ with side_grid[0][0]:
             # get all columns for selected stage table
             df_bk_columns = get_columns_by_table(stage_schema, stage_table)
 
+            st.write(df_bk_columns)
+
             if df_bk_columns:
       
                   # multi selection for business key columns of stage table
