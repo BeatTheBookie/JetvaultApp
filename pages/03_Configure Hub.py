@@ -111,12 +111,17 @@ with side_grid[0][0]:
             # get all tables inside the stage schema
             df_stage_tables = get_tables_by_schema(stage_schema)
 
-            # select box for filtered tables
-            stage_table = st.selectbox(
-                              label = 'Stage Table',
-                              key = 'add_stage_table',
-                              options = df_stage_tables
-                              )
+            if df_stage_tables is not None:
+
+                  # select box for filtered tables
+                  stage_table = st.selectbox(
+                                    label = 'Stage Table',
+                                    key = 'add_stage_table',
+                                    options = df_stage_tables
+                                    )
+            
+            else:
+                  stage_table = None
             
             st.write('test:',stage_table)
             
