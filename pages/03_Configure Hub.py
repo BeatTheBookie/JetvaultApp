@@ -139,22 +139,24 @@ with side_grid[0][0]:
 
             if hub_alias == "":
                   hub_alias = None
+
+            if stage_table:
             
-            # get all columns for selected stage table
-            df_bk_columns = get_columns_by_table(stage_schema, stage_table)
+                  # get all columns for selected stage table
+                  df_bk_columns = get_columns_by_table(stage_schema, stage_table)
 
-            st.write(df_bk_columns)
+            else:
+                  df_bk_columns = None
 
-            if df_bk_columns:
+            
+            # multi selection for business key columns of stage table
+
+            bk_columns = st.multiselect(
+                              label = 'Business Key',
+                              key = 'add_bk_columns',
+                              options = df_bk_columns
+                              )
       
-                  # multi selection for business key columns of stage table
-
-                  bk_columns = st.multiselect(
-                                    label = 'Business Key',
-                                    key = 'add_bk_columns',
-                                    options = df_bk_columns
-                                    )
-            
 
             # Button to save connection info
             if st.button("Save Hub Load"):
