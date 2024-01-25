@@ -106,7 +106,7 @@ with side_grid[0][0]:
                               label = 'Stage Schema',
                               key = 'add_stage_schema',
                               options = df_db_schema,
-                              default = ['STAGE_TPCH']
+                              index = 9
                               )
             
             # get all tables inside the stage schema
@@ -115,8 +115,7 @@ with side_grid[0][0]:
             # select box for filtered tables
             stage_table = st.selectbox(
                               label = 'Stage Table',
-                              key = 'add_stage_table',
-                              index = 9
+                              key = 'add_stage_table'
                               )
       
             
