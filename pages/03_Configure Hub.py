@@ -105,7 +105,8 @@ with side_grid[0][0]:
             stage_schema = st.selectbox(
                               label = 'Stage Schema',
                               key = 'add_stage_schema',
-                              options = df_db_schema
+                              options = df_db_schema,
+                              index = 9
                               )
             
             # get all tables inside the stage schema
