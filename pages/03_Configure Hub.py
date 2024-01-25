@@ -100,15 +100,13 @@ with side_grid[0][0]:
 
             #get a list of all available schemas
             df_db_schema = get_all_db_schema()
-
-            st.write('Hallo')
             
             #select box for stage schema
             stage_schema = st.selectbox(
                               label = 'Stage Schema',
                               key = 'add_stage_schema',
                               options = df_db_schema,
-                              index = 9
+                              default = ['STAGE_TPCH']
                               )
             
             # get all tables inside the stage schema
