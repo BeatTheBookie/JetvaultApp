@@ -140,7 +140,8 @@ with side_grid[0][0]:
             if hub_alias == "":
                   hub_alias = None
 
-            st.write(stage_table)
+            st.write('test:',stage_table)
+
 
             if stage_table:
             
