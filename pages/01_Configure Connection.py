@@ -65,6 +65,8 @@ with st.expander("Information"):
                   <p>
                   Configuring the connection to your Snowflake instance is the first step in working with the Jetvault App.
                   This is needed before continuing with the next steps.
+
+                  Test
                   
                   </p>
                   """, unsafe_allow_html=True)
