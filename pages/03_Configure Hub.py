@@ -110,7 +110,7 @@ with side_grid[0][0]:
                               )
             
             # get all tables inside the stage schema
-            df_stage_tables = get_tables_by_schema(stage_schema)
+            df_stage_tables = get_tables_by_schema(stage_schema)  
 
             # select box for filtered tables
             stage_table = st.selectbox(
