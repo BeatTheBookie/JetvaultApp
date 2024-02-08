@@ -130,10 +130,3 @@ if st.button("Test Connection"):
         st.error(f"Error connecting to Snowflake: {str(e)}")
 
 
-
-st.write(st.session_state.snowflake_user)
-st.write(st.session_state.snowflake_password)
-st.write(st.session_state.snowflake_account)
-st.write(st.session_state.snowflake_warehouse)
-st.write(st.session_state.snowflake_database)
-st.write(st.session_state.snowflake_schema)
