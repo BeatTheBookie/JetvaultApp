@@ -12,6 +12,7 @@ from helper.JetvaultApp_helper import get_tables_by_schema
 from helper.JetvaultApp_helper import get_columns_by_table
 from helper.JetvaultApp_helper import push_hub_load_config
 from helper.JetvaultApp_helper import make_grid
+from helper.JetvaultApp_helper import get_all_stage_schema
 
 
 st.set_page_config(
@@ -100,13 +101,16 @@ with side_grid[0][0]:
 
             #get a list of all available schemas
             df_db_schema = get_all_db_schema()
+
+            # get a list of all stage schemas
+            df_stage_schema = get_all_stage_schema()
             
             #select box for stage schema
             stage_schema = st.selectbox(
                               label = 'Stage Schema',
                               key = 'add_stage_schema',
-                              options = df_db_schema,
-                              index = 9
+                              options = df_stage_schema,
+                              index = 0
                               )
             
             # get all tables inside the stage schema
