@@ -6,7 +6,7 @@ import pandas as pd
 
 #helper functions
 from helper.JetvaultApp_helper import get_link_load_config
-from helper.JetvaultApp_helper import get_all_stage_schema
+from helper.JetvaultApp_helper import get_stage_config
 from helper.JetvaultApp_helper import get_tables_by_schema
 from helper.JetvaultApp_helper import get_hub_load_config
 from helper.JetvaultApp_helper import make_grid
@@ -88,6 +88,7 @@ if "snowflake_account" not in st.session_state or \
 #get configuration
 df_hub_load_config = get_hub_load_config()
 df_link_load_config = get_link_load_config()
+df_stage_config = get_stage_config()
 
 
 
@@ -104,14 +105,12 @@ with side_grid[0][0]:
             # create the whole object for a hub configuration
             #
 
-            # get a list of all stage schemas
-            df_stage_schema = get_all_stage_schema()
 
             #select box for stage schema
             stage_schema = st.selectbox(
                               label = 'Stage Schema',
                               key = 'add_stage_schema',
-                              options = df_stage_schema
+                              options = df_stage_config['STAGE_SCHEMA']
                               )
 
             # get all tables inside the stage schema

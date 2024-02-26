@@ -318,23 +318,6 @@ def get_all_db_schema():
         st.error(f"Error executing SQL query: {str(e)}")
         return None
 
-#get all schemas which are set as stages
-def get_all_stage_schema():
-    try:
-        conn = get_db_connection()
-
-        # Your SQL query
-        query = f"SELECT STAGE_SCHEMA FROM {st.session_state.snowflake_schema}.LOAD_CONFIG"
-
-        # Execute the query and fetch results into a DataFrame
-        df = pd.read_sql_query(query, conn)
-
-        return df
-    except Exception as e:
-        st.error(f"Error executing SQL query: {str(e)}")
-        return None
-    
-
 
 # get table for a given schema
 def get_tables_by_schema(schema_name):

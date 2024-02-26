@@ -12,7 +12,7 @@ from helper.JetvaultApp_helper import get_tables_by_schema
 from helper.JetvaultApp_helper import get_columns_by_table
 from helper.JetvaultApp_helper import push_hub_load_config
 from helper.JetvaultApp_helper import make_grid
-from helper.JetvaultApp_helper import get_all_stage_schema
+from helper.JetvaultApp_helper import get_stage_config
 
 
 st.set_page_config(
@@ -85,6 +85,7 @@ if "snowflake_account" not in st.session_state or \
 
 #get configuration
 df_hub_load_config = get_hub_load_config()
+df_stage_config = get_stage_config()
 
 
 #build container and colum grid
@@ -101,15 +102,12 @@ with side_grid[0][0]:
 
             #get a list of all available schemas
             df_db_schema = get_all_db_schema()
-
-            # get a list of all stage schemas
-            df_stage_schema = get_all_stage_schema()
             
             #select box for stage schema
             stage_schema = st.selectbox(
                               label = 'Stage Schema',
                               key = 'add_stage_schema',
-                              options = df_stage_schema,
+                              options = df_stage_config['STAGE_SCHEMA'],
                               index = 0
                               )
             
